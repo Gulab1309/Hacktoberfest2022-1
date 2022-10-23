@@ -1,0 +1,34 @@
+// C++ program for
+// Recursion implementation of
+// Min Sum Path in a Triangle
+#include <bits/stdc++.h>
+using namespace std;
+
+// Util function to find minimum sum for a path
+int helper(vector<vector<int>>& A, int i, int j){
+	// Base Case
+	if(i == A.size() ){
+	return 0 ;
+	}
+
+	int mn ;
+	// Add current to the minimum of the next paths
+	mn = A[i][j] + min(helper(A, i+1,j), helper(A,i+1, j+1)) ;
+	//return minimum
+	return mn ;
+}
+
+
+int minSumPath(vector<vector<int>>& A) {
+	return helper(A, 0, 0) ;
+}
+
+/* Driver program to test above functions */
+int main()
+{
+	vector<vector<int> > A{ { 2 },
+							{ 3, 9 },
+							{ 1, 6, 7 } };
+	cout << minSumPath(A);
+	return 0;
+}
